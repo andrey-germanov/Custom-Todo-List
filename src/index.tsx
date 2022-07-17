@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { setupTranslation } from './i18n/i18n';
 import { withTranslation } from 'react-i18next';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 // const root = ReactDOM.createRoot(
 //   document.getElementById('root') as HTMLElement
@@ -27,7 +28,13 @@ setupTranslation().then(() => {
           clientId="NmNtaXKZAzyKjKVissbYbifjCfGESxwg"
           redirectUri={window.location.origin}
         > */}
+        <Auth0Provider
+          domain="dev-ufz05wjq.us.auth0.com"
+          clientId="NmNtaXKZAzyKjKVissbYbifjCfGESxwg"
+          redirectUri={window.location.origin}
+        >
           <AppContainer />
+        </Auth0Provider>
         {/* </Auth0Provider> */}
       </React.Suspense>,
       document.getElementById("root")
