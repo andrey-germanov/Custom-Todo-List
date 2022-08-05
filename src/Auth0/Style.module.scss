@@ -1,11 +1,14 @@
 .userInfo{
     display: flex;
     gap: 10px;
+    align-items: center;
+
     img{
-        width: 50px;
-        border-radius: 1000px;
+        height: fit-content;
+        width: 30px;
+        border-radius: 50%;
     }
-    h2,p{
+    h2{
         display: block;
     }
 }

@@ -11,7 +11,11 @@
     "Low": "Low",
 
     "confirmAlert": "Did you make it so you can delete it now?",
+
     "delete": "Delete",
     "save": "Save",
-    "edit": "Edit"
+    "edit": "Edit",
+
+    "deleted": "Deleted",
+    "done": "Done"
 }

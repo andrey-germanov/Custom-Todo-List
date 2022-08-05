@@ -1,0 +1,48 @@
+.archiveBlock {
+    width: 100%;
+
+    .tab {
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .ant-tabs {
+        background-color: red;
+    }
+
+    .archiveTask {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+        min-height: 45px;
+        padding: 10px 10px;
+
+        transition: 1s;
+
+        border: 1px solid rgba(177, 177, 177, 0.4);
+        border-radius: 5px;
+        background-color: #DBE2EF;
+
+        gap: 15px;
+
+        div {
+            display: flex;
+
+            gap: 10px;
+        }
+    }
+    .High {
+        background-color: #f4030385;
+    }
+
+    .Medium {
+        background-color: #0000ff69;
+    }
+    @media screen and (max-width: 768px) {
+        padding: 10px;
+    }
+}
