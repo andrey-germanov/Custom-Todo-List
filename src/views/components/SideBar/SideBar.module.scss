@@ -1,0 +1,107 @@
+.todoSidebar {
+    position: fixed;
+    top: 0;
+
+    width: 300px;
+    height: 100%;
+    padding: 0 10px;
+
+    transition: all 1s ease-in-out;
+
+    border-radius: 0 20px 20px 0;
+    background: #0000ff63;
+
+    .menuIcon {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 50px;
+        width: 100%;
+        height: 50px;
+
+        cursor: pointer;
+    }
+
+    @media screen and(max-width: 768px) {
+        flex-wrap: wrap;
+
+        height: 100px;
+    }
+    .sideBarItems {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 94%;
+
+        animation-name: slidein;
+        animation-duration: 2s;
+
+        .todoProfile {
+            display: flex;
+            align-items: center;
+
+            padding: 5px;
+
+            img {
+                border: 1px solid #2f69ae;
+            }
+        }
+
+        .sideBarControls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        a{
+            color: rgba(0, 0, 0, 0.85);
+            &:hover{
+                color: rgba(0, 0, 0, 0.45);
+            }
+        }
+        .sideBarNavigate ul{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+}
+
+.openedMenu {
+    bottom: auto;
+
+    width: 50px;
+    height: 50px;
+    // background:  rgb(176 106 242);
+    border-radius: 0 30px 30px 0;
+
+    .menuIcon {
+        justify-content: center;
+        // background: rgb(176, 106, 242);
+    }
+
+    .sideBarTitle {
+        animation-name: slidein;
+        animation-duration: 2s;
+    }
+
+    * {
+        transition: all 1s ease-in-out;
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes slidein {
+
+    from {
+        transform: translateX(-450px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}

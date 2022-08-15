@@ -5,7 +5,6 @@ import { Tasks } from '../Task/index';
 import s from './TodoWork.module.scss';
 import { InputPlus } from '../InputPlus/InputPlus';
 import { NotData } from '../NotData/NotData';
-import { Archive } from '../Archive/index';
 
 interface TodoWorkProps {
     tasks: Task[],
@@ -37,34 +36,26 @@ export const TodoWork = ({tasks, deletedTasks, doneTasks, createTask, updateTask
                 />
             )
           }
+          return ''
         })
         return task
       }
-    return (
-        <>
-            <div className={s.todoWork}>
-                {/* <h1>{t("mainTitleBlock")}</h1> */}
-                <InputPlus
-                    onAdd={(title: string, priority: string) => {
-                        if (title) createTask(title, priority);
-                    }}
-                    t={t}
-                />
-                <hr />
-
-                {renderTaskByPriority('High')}
-                {renderTaskByPriority('Medium')}
-                {renderTaskByPriority('Low')}
-
-                {!tasks.length && <NotData />}
-            </div>
-            <div className={s.archiveWrapper}>
-            <Archive
-                deletedTasks={deletedTasks} 
-                doneTasks={doneTasks}
-                removeArchiveDeletedTasks={removeArchiveDeletedTasks}
+      return (
+        <div className={s.todoWork}>
+            <InputPlus
+                onAdd={(title: string, priority: string) => {
+                    if (title) createTask(title, priority);
+                }}
+                t={t}
             />
+            <hr />
+
+            {renderTaskByPriority('High')}
+            {renderTaskByPriority('Medium')}
+            {renderTaskByPriority('Low')}
+
+            {!tasks.length && <NotData />}
         </div>
-        </>
     )
 }
+

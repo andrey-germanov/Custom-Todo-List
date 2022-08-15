@@ -12,11 +12,13 @@ interface ToDoStore {
     tasks: Task[],
     deletedTasks: Task[],
     doneTasks: Task[],
+    darkTheme: boolean,
     createTask: (title: string, priority: string) => void;
     updateTask: (id: string, title: string, priority: string) => void;
     removeTask: (id: string, title: string, priority: string) => void;
     doneTask: (id: string, title: string, priority: string) => void;
     removeArchiveDeletedTasks: () => void;
+    setDarkTheme: (darkTheme: boolean) => void;
 }
 
 const isToDoStore = (object: any): object is ToDoStore =>{
@@ -29,14 +31,19 @@ const isToDoDeletedTasks = (object: any): object is ToDoStore =>{
     return 'deletedTasks' in object;
 }
 
+const darkTheme = (object: any): object is ToDoStore =>{
+    return 'darkTheme' in object;
+}
+
 const localStorageUpdate = <T extends State>(config: StateCreator<T>): StateCreator<T> => (set, get, api) => config((nextState, ...args) => {
      if(isToDoStore(nextState)) window.localStorage.setItem('tasks', JSON.stringify(nextState.tasks));
      if(isToDoDoneTasks(nextState)) window.localStorage.setItem('doneTasks', JSON.stringify(nextState.doneTasks));
      if(isToDoDeletedTasks(nextState)) window.localStorage.setItem('deletedTasks', JSON.stringify(nextState.deletedTasks));
+     if(darkTheme(nextState)) window.localStorage.setItem('darkTheme', JSON.stringify(nextState.darkTheme));
      set(nextState, ...args);
   }, get, api);
 
-const currentState = (nameState: string) => {
+const currentTaskState = (nameState: string) => {
     try {
         const currentTaskStore = (JSON.parse(window.localStorage.getItem(nameState) || '[]')) as Task[];
         return currentTaskStore;
@@ -45,11 +52,22 @@ const currentState = (nameState: string) => {
     }
     return [];
 }
+const currentThemeState = (nameState: string) => {
+    try {
+        const currentTaskStore = (JSON.parse(window.localStorage.getItem(nameState) || '[]'));
+        return currentTaskStore;
+    } catch (error) {
+        console.log('error currentThemeState')
+    }
+    return [];
+}
 export const useToDoStore = create<ToDoStore>(devtools(localStorageUpdate(
     (set, get) => ({
-        tasks: currentState('tasks'),
-        deletedTasks: currentState('deletedTasks'),
-        doneTasks: currentState('doneTasks'),
+        tasks: currentTaskState('tasks'),
+        deletedTasks: currentTaskState('deletedTasks'),
+        doneTasks: currentTaskState('doneTasks'),
+        darkTheme: currentThemeState('darkTheme'),
+        setDarkTheme: (darkTheme: boolean) => set({ darkTheme }),
         createTask: (title: string, priority: string) => {
             const { tasks } = get();
             const newTask = [{

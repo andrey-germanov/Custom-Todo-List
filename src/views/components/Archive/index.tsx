@@ -11,7 +11,6 @@ const { TabPane } = Tabs;
 interface ArchiveProps {
   deletedTasks: Task[];
   doneTasks: Task[];
-  removeArchiveDeletedTasks: () => void;
 }
 export const Archive = ({ deletedTasks, doneTasks }: ArchiveProps) => {
   return (

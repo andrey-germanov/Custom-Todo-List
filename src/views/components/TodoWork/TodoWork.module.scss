@@ -1,11 +1,12 @@
 .todoWork {
     max-width: 800px;
     min-height: 300px;
-    margin: 30px auto 0 auto;
+    margin: 0 auto;
     padding: 20px 55px;
 
     border-radius: 20px;
     background-color: white;
+
     h1 {
         font-size: 40px;
 
@@ -13,7 +14,8 @@
 
         text-align: center;
     }
-    @media screen and (max-width: 768px) {
+
+    @media screen and(max-width: 768px) {
         padding: 10px;
     }
 }
