@@ -17,5 +17,7 @@
     "edit": "Edit",
 
     "deleted": "Deleted",
-    "done": "Done"
+    "done": "Done",
+    "titleSideBar": "Todo List by AnGe",
+    "isNotAuth": "No access, please login"
 }

@@ -6,10 +6,10 @@ import { WithTranslation } from "react-i18next";
 import LoginButton from "./Auth0/LoginButton";
 import { useAuth0, User } from "@auth0/auth0-react";
 import { TodoWork } from "./views/components/TodoWork/TodoWork";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SideBar } from './views/components/SideBar/index';
 import { Archive } from './views/components/Archive/index';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 
 export interface IAppProps extends WithTranslation {}
 
@@ -32,12 +32,16 @@ export const App = ({i18n, t} :IAppProps) => {
       state.doneTask,
       state.removeArchiveDeletedTasks,
     ]);
+  useEffect(() => {
+    switcherSideBar();
+  },[])
+  
   const switcherSideBar = () => {
     setSwithSideBar(!switchSideBar)
   }
   const isNotAuthenticated = () => {
     return <div className={s.isNotAuthenticated}>
-      <h1>Нет доступа, пожалуйста залогиньтесь</h1>
+      <h1>{`${t('isNotAuth')}`}</h1>
       <LoginButton />
     </div>
   }
@@ -54,9 +58,13 @@ export const App = ({i18n, t} :IAppProps) => {
           switchSideBar={switchSideBar}
         />}
           <Routes>
-            <Route path={'/home'} 
+            <Route path={''} 
               element={
-                <h1 style={{display: 'flex', justifyContent: 'center'}}>Home</h1>
+                isAuthenticated ? 
+                  <div style={{textAlign: 'center', marginTop: '20px'}}>
+                    <Link to={'/todoList'}>Start working a tasks</Link>
+                  </div> 
+                  : isNotAuthenticated()
               }
             />
             <Route path={"/todoList"} 

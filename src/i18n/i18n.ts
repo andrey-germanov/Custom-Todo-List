@@ -5,8 +5,8 @@ import Backend from "i18next-xhr-backend";
 export const setupTranslation = async () => {
   console.log("Loading translations");
   return await i18n
-    .use(initReactI18next)
-    .use(Backend)
+  .use(Backend)
+  .use(initReactI18next)
     .init(
       {
         fallbackLng: "ru",

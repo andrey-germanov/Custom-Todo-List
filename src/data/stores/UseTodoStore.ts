@@ -1,6 +1,6 @@
 import create, { State, StateCreator } from 'zustand';
 import { generateId } from '../helpers';
-import { devtools, persist } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
 
 export type Task = {
     id: string;

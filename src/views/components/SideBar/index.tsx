@@ -1,4 +1,3 @@
-import React from 'react'
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button } from "antd";
@@ -7,6 +6,7 @@ import LogoutButton from '../../../Auth0/LogoutButton';
 import LoginButton from '../../../Auth0/LoginButton';
 import s from './SideBar.module.scss';
 import { Link } from 'react-router-dom';
+import { t } from 'i18next';
 
 interface ISideBar {
     switcherSideBar : () => void;
@@ -22,7 +22,7 @@ export const SideBar = ({switchSideBar, switcherSideBar, isAuthenticated, setLan
     return (
     <div className={`${s.todoSidebar} ${!switchSideBar && s.openedMenu}`}>
         <div onClick={switcherSideBar} className={`${s.menuIcon} ${s.openedMenu}`}>
-          {!switchSideBar ? <ArrowRightOutlined /> : <> <span className={s.sideBarTitle}>Todo List by AnGe</span> <ArrowLeftOutlined /> </>}
+          {!switchSideBar ? <ArrowRightOutlined /> : <> <span className={s.sideBarTitle}>{`${t('titleSideBar')}`}</span> <ArrowLeftOutlined /> </>}
         </div>
         {
           switchSideBar &&

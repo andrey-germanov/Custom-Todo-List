@@ -1,8 +1,7 @@
 import React from "react";
 import { Task } from "../../../data/stores/UseTodoStore";
 import s from "./Archive.module.scss";
-import { useState } from "react";
-import { Button, Tabs } from "antd";
+import { Tabs } from "antd";
 import { t } from "i18next";
 import moment from "moment-timezone";
 
@@ -25,8 +24,8 @@ export const Archive = ({ deletedTasks, doneTasks }: ArchiveProps) => {
                   <span>
                     {item.priority} priority
                   </span>
+                  <span>{`${t('deleted')} `}</span>
                   <span>
-                    {`${t('deleted')} `}
                     {moment(moment(item.createdTask).format()).fromNow()}
                   </span>
                 </div>
@@ -43,9 +42,8 @@ export const Archive = ({ deletedTasks, doneTasks }: ArchiveProps) => {
                   <span>
                     {item.priority} priority
                   </span>
+                  <span>{`${t('done')} `} </span>
                   <span>
-                    {`${t('done')} `} 
-                    &#32;
                     {moment(moment(item.createdTask).format()).fromNow()}
                   </span>
                 </div>
